@@ -7,6 +7,7 @@ import DolarIcon from '../../assets/dolar-icon.svg';
 import PlusIcon from '../../assets/plus-sm.svg';
 import { useState } from 'react';
 import { NewTransactionModal } from '../../components/NewTransactionModal';
+import { TransactionHistory } from '../../components/TransactionHistory';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +22,7 @@ export const Home = () => {
         <ResumeItem onClick={() => setIsModalOpen(true)} txt='Transação' icon={PlusIcon} isCustom={true} />
       </div>
       <div className={styles.content}>
-
+        <TransactionHistory />
       </div>
       <NewTransactionModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(!isModalOpen)} />
     </div>

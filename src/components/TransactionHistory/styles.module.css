@@ -1,0 +1,22 @@
+.transactions {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 20px;
+    background: var(--bg-tertiary);
+    box-shadow: 5px 15px 30px -5px #DCE0EC;
+}
+
+.transactions h2 {
+    color: var(--font-tertiary);
+    text-align: center;
+    font-family: Mulish;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
