@@ -7,3 +7,20 @@
     gap: 32px;
     background-color: var(--bg-secondary);
 }
+
+.areaTransactions {
+    display: flex;
+    padding: 0px 120px;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.content {
+    display: flex;
+    padding: 0px 120px;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;      
+}
