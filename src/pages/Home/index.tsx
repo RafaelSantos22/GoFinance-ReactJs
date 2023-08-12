@@ -8,6 +8,7 @@ import PlusIcon from '../../assets/plus-sm.svg';
 import { useState } from 'react';
 import { NewTransactionModal } from '../../components/NewTransactionModal';
 import { TransactionHistory } from '../../components/TransactionHistory';
+import { Footer } from '../../components/Footer';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +26,7 @@ export const Home = () => {
         <TransactionHistory />
       </div>
       <NewTransactionModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(!isModalOpen)} />
+      <Footer />
     </div>
   );
 }
