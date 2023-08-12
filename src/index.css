@@ -3,3 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --font-primary: #EFF6FF;
+  --font-secondary: #94A3B8;
+  --font-tertiary: #1E293B;
+  --font-quaternary: #F1F5F9;
+  --font-modal: #27272A;
+
+  --bg-primary: #1E3A8A;
+  --bg-secondary: #E2E8F0;
+  --bg-tertiary: #F8FAFC;
+  --bg-quaternary: #1E40AF;
+  --bg-quintenary: #F1F5F9;
+  --bg-modal: #F1F5F9;
+
+  --border-color-primary: #CBD5E1;
+  --border-color-secondary: #1E40AF;
+}
