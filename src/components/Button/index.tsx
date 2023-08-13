@@ -4,7 +4,7 @@ type Props = {
     children: React.ReactNode;
     isSpecial?: boolean;
     icon: string;
-    onClick?: () => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export const Button = ({ children, isSpecial, icon, onClick }: Props) => {

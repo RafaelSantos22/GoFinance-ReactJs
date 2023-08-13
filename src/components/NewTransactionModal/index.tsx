@@ -1,12 +1,14 @@
+import { Transaction } from '../../types/Transaction';
 import { Form } from '../Form';
 import styles from './styles.module.css';
 
 type Props = {
     isOpen: boolean;
     closeModal: () => void;
+    addTransaction: (transaction: Transaction) => void;
 }
 
-export const NewTransactionModal = ({ isOpen, closeModal }: Props) => {
+export const NewTransactionModal = ({ isOpen, closeModal, addTransaction }: Props) => {
     if (isOpen) {
         return (
             <div className={styles.modalInit}>
@@ -14,7 +16,7 @@ export const NewTransactionModal = ({ isOpen, closeModal }: Props) => {
                     <header className={styles.header}>
                         <h2>Nova transação</h2>
                     </header>    
-                    <Form onClose={closeModal} />
+                    <Form addTransaction={addTransaction} onClose={closeModal} />
                 </div>        
             </div>
         );

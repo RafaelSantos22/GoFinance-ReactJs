@@ -1,8 +1,12 @@
-import { transactions } from '../../data/transactions';
+import { Transaction } from '../../types/Transaction';
 import TransactionRow from '../TransactionRow';
 import styles from './styles.module.css';
 
-export const TransactionHistory = () => {
+type Props = {
+    transactions: Transaction[];      
+}
+
+export const TransactionHistory = ({ transactions }: Props) => {
     return (
         <div className={styles.transactions}>
             <h2>Histórico de transações</h2>
@@ -17,8 +21,8 @@ export const TransactionHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map(transaction => (
-                        <TransactionRow transaction={transaction} />
+                    {transactions.map((transaction, index) => (
+                        <TransactionRow key={index} transaction={transaction} />
                     ))}
                 </tbody>
             </table>

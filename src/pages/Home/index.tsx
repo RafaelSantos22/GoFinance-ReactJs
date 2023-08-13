@@ -9,9 +9,15 @@ import { useState } from 'react';
 import { NewTransactionModal } from '../../components/NewTransactionModal';
 import { TransactionHistory } from '../../components/TransactionHistory';
 import { Footer } from '../../components/Footer';
+import { Transaction } from '../../types/Transaction';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  const addTransaction = (newTransaction: Transaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
 
   return (
     <div className={styles.container}>
@@ -23,9 +29,9 @@ export const Home = () => {
         <ResumeItem onClick={() => setIsModalOpen(true)} txt='Transação' icon={PlusIcon} isCustom={true} />
       </div>
       <div className={styles.content}>
-        <TransactionHistory />
+        <TransactionHistory transactions={transactions}/>
       </div>
-      <NewTransactionModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(!isModalOpen)} />
+      <NewTransactionModal addTransaction={addTransaction} isOpen={isModalOpen} closeModal={() => setIsModalOpen(!isModalOpen)} />
       <Footer />
     </div>
   );

@@ -4,12 +4,39 @@ import TrendingDown from '../../assets/trending-down.svg';
 import CheckButton from '../../assets/check.svg';
 import CancelIcon from '../../assets/cancel-icon.svg';
 import { Button } from '../Button';
+import { useState } from 'react';
+import { Transaction } from '../../types/Transaction';
 
 type Props = {
     onClose: () => void;
+    addTransaction: (transaction: Transaction) => void;
 }
 
-export const Form = ({ onClose }: Props) => {
+export const Form = ({ onClose, addTransaction }: Props) => {
+    const [name, setName] = useState('');
+    const [date, setDate] = useState('');
+    const [category, setCategory] = useState('');
+    const [value, setValue] = useState('');
+    const [type, setType] = useState<'+' | '-'>('+');
+
+    const generateID = () => Math.round(Math.random() * 1000);
+
+    const handleAddTransaction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+
+        const newTransaction: Transaction = {
+            id: generateID(),
+            nome: name,
+            data: date,
+            categoria: category,
+            valor: parseFloat(value),
+            tipo: type,
+        };
+
+        addTransaction(newTransaction);
+        onClose();
+    };
+
     return (
         <>
             <form className={styles.formContainer}>
@@ -18,6 +45,8 @@ export const Form = ({ onClose }: Props) => {
                     <input 
                         type="text" 
                         placeholder='Digite o nome da sua transação'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <div className={styles.inputField}>
@@ -25,6 +54,8 @@ export const Form = ({ onClose }: Props) => {
                     <input 
                         type="text" 
                         placeholder='Selecione a data da transação'
+                        value={date}
+                        onChange={e => setDate(e.target.value)}
                     />
                 </div>
                 <div className={styles.inputField}>
@@ -32,6 +63,8 @@ export const Form = ({ onClose }: Props) => {
                     <input 
                         type="text" 
                         placeholder='Digite a categoria da sua transação'
+                        value={category}
+                        onChange={e => setCategory(e.target.value)}
                     />
                 </div>
                 <div className={styles.inputField}>
@@ -39,18 +72,32 @@ export const Form = ({ onClose }: Props) => {
                     <input 
                         type="text"
                         placeholder='Digite o valor da sua transação'
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
                     />
                 </div>
                 <div className={styles.inputField}>
                     <label>Tipo</label>
                     <div className={styles.radioButtons}>
                         <div className={styles.radioButton}>
-                            <input type="radio" name="option" value="op1" />
+                            <input 
+                                type="radio" 
+                                name="option" 
+                                value="+" 
+                                checked={type === '+'}
+                                onChange={() => setType('+')}
+                            />
                             <img src={TrendingUp} alt="icone" />
                             <span>entrada</span>
                         </div>
                         <div className={styles.radioButton}>
-                            <input type="radio" name="option" value="op2" />
+                            <input 
+                                type="radio" 
+                                name="option" 
+                                value="-" 
+                                checked={type === '-'}
+                                onChange={() => setType('-')}
+                            />
                             <img src={TrendingDown} alt="icone" />
                             <span>Saída</span>
                         </div>
@@ -58,7 +105,7 @@ export const Form = ({ onClose }: Props) => {
                 </div>
                 <div className={styles.buttonsArea}>
                     <Button onClick={onClose} icon={CancelIcon}>Cancelar</Button>
-                    <Button icon={CheckButton} isSpecial>Adicionar</Button>
+                    <Button onClick={handleAddTransaction} icon={CheckButton} isSpecial>Adicionar</Button>
                 </div>
             </form>
         </>
