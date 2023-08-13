@@ -10,22 +10,44 @@ import { NewTransactionModal } from '../../components/NewTransactionModal';
 import { TransactionHistory } from '../../components/TransactionHistory';
 import { Footer } from '../../components/Footer';
 import { Transaction } from '../../types/Transaction';
+import { allTransactions } from '../../data/transactions';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>(allTransactions);
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const addTransaction = (newTransaction: Transaction) => {
-    setTransactions([...transactions, newTransaction]);
+    setTransactions(prevTransactions => [...prevTransactions, newTransaction]);
+    const updatedTransactions = [...transactions, newTransaction];
+
+    const amountExpense = updatedTransactions
+      .filter(item => item.tipo === '-')
+      .map(transaction => Number(transaction.valor));
+
+    const amountIncome = updatedTransactions
+      .filter(item => item.tipo === '+')
+      .map(transaction => Number(transaction.valor));
+
+    const totalExpense = amountExpense.reduce((acc, value) => acc + value, 0);
+    const totalIncome = amountIncome.reduce((acc, value) => acc + value, 0);
+
+    const total = Math.abs(Number(totalIncome) - Number(totalExpense));
+
+    setIncome(totalIncome);
+    setExpense(totalExpense);
+    setTotal(total);
   };
 
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.areaTransactions}>
-        <ResumeItem txt='Entradas' icon={TrendingUp} value='1000'/>
-        <ResumeItem txt='Saídas' icon={TrendingDown} value='1000'/>
-        <ResumeItem txt='Saldo' icon={DolarIcon} value='1000'/>
+        <ResumeItem txt='Entradas' icon={TrendingUp} value={income} />
+        <ResumeItem txt='Saídas' icon={TrendingDown} value={expense} />
+        <ResumeItem txt='Saldo' icon={DolarIcon} value={total} />
         <ResumeItem onClick={() => setIsModalOpen(true)} txt='Transação' icon={PlusIcon} isCustom={true} />
       </div>
       <div className={styles.content}>

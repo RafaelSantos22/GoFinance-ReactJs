@@ -1,14 +1,18 @@
+import { valueFormatter } from '../../utils/valueFormatter';
 import styles from './styles.module.css';
 
 type Props = {
-    txt?: string;
-    icon?: string;
-    value?: string;
+    txt: string;
+    icon: string;
+    value?: number;
     isCustom?: boolean;
     onClick?: () => void;
 }
 
 export const ResumeItem = ({ txt, icon, value, isCustom, onClick }: Props) => {
+    const formattedValue = value !== undefined ? valueFormatter(value) : ''; 
+    const [integerPart, decimalPart] = formattedValue.split(',');
+
     return (
         <div className={`${styles.card} ${isCustom ? styles.customCard : ''}`}
         onClick={onClick}
@@ -24,8 +28,12 @@ export const ResumeItem = ({ txt, icon, value, isCustom, onClick }: Props) => {
                     <img src={icon} alt="icon" />
                 </div>
             )}
-           
-            <h2>{value}</h2>
+            {value !== undefined && (
+        <h2 className={styles.cardValue}>
+          {integerPart},
+          <span className={styles.smallDecimal}>{decimalPart}</span>
+        </h2>
+      )}
         </div>
     );
 }
