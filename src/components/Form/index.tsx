@@ -6,6 +6,9 @@ import CancelIcon from '../../assets/cancel-icon.svg';
 import { Button } from '../Button';
 import { useState } from 'react';
 import { Transaction } from '../../types/Transaction';
+import { valueInputFormat } from '../../utils/valueFormatter';
+import { ErrorMessage } from '../ErrorMessage';
+import { validateInputs } from '../../utils/validateInputs';
 
 type Props = {
     onClose: () => void;
@@ -18,27 +21,33 @@ export const Form = ({ onClose, addTransaction }: Props) => {
     const [category, setCategory] = useState('');
     const [value, setValue] = useState('');
     const [type, setType] = useState<'+' | '-'>('+');
+    const [transactionError, setTransactionError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const generateID = () => Math.round(Math.random() * 1000);
 
     const handleAddTransaction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
 
-        const newTransaction: Transaction = {
-            id: generateID(),
-            nome: name,
-            data: date,
-            categoria: category,
-            valor: Number(value),
-            tipo: type,
-        };
+        const isValid = validateInputs(name, date, category, value, setTransactionError, setErrorMessage);
 
-        addTransaction(newTransaction);
-        onClose();
+        if(isValid) {
+            const newTransaction: Transaction = {
+                id: generateID(),
+                nome: name,
+                data: date,
+                categoria: category,
+                valor: parseFloat(valueInputFormat(value)),
+                tipo: type,
+            };
+            addTransaction(newTransaction);
+            onClose();
+        }
     };
-
+    
     return (
         <>
+            {transactionError && <ErrorMessage msg={errorMessage} />}
             <form className={styles.formContainer}>
                 <div className={styles.inputField}>
                     <label>Nome</label>

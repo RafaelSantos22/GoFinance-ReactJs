@@ -10,11 +10,10 @@ import { NewTransactionModal } from '../../components/NewTransactionModal';
 import { TransactionHistory } from '../../components/TransactionHistory';
 import { Footer } from '../../components/Footer';
 import { Transaction } from '../../types/Transaction';
-import { allTransactions } from '../../data/transactions';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [transactions, setTransactions] = useState<Transaction[]>(allTransactions);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [total, setTotal] = useState(0);
