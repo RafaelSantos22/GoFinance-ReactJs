@@ -10,6 +10,8 @@
   --font-tertiary: #1E293B;
   --font-quaternary: #F1F5F9;
   --font-modal: #27272A;
+  --font-positive: #16A34A;
+  --font-negative: #DC2626;
 
   --bg-primary: #1E3A8A;
   --bg-secondary: #E2E8F0;
@@ -21,4 +23,5 @@
 
   --border-color-primary: #CBD5E1;
   --border-color-secondary: #1E40AF;
+  --border-color-tertiary: #94A3B8;
 }

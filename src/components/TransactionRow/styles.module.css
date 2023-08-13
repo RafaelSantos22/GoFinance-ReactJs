@@ -1,0 +1,21 @@
+tbody td {
+    padding: 12px;
+}
+
+.positive,
+.negative {
+    text-align: center;
+    font-size: 16px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.positive {
+    color: var(--font-positive);
+}
+  
+.negative {
+    color: var(--font-negative);
+}
