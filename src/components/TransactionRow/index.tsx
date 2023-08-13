@@ -1,4 +1,5 @@
 import { Transaction } from '../../types/Transaction';
+import { valueFormatter } from '../../utils/valueFormatter';
 import styles from './styles.module.css';
 
 type Props = {
@@ -11,7 +12,7 @@ const TransactionRow = ({ transaction }: Props) => {
             <td>{transaction.nome}</td>
             <td>{transaction.data}</td>
             <td>{transaction.categoria}</td>
-            <td>{transaction.valor}</td>
+            <td>{valueFormatter(transaction.valor)}</td>
             <td className={transaction.tipo === '+' ? styles.positive : styles.negative}>
                 {transaction.tipo}
             </td>       

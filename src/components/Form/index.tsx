@@ -29,7 +29,7 @@ export const Form = ({ onClose, addTransaction }: Props) => {
             nome: name,
             data: date,
             categoria: category,
-            valor: parseFloat(value),
+            valor: Number(value),
             tipo: type,
         };
 
