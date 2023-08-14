@@ -12,6 +12,7 @@ type Props = {
 export const ResumeItem = ({ txt, icon, value, isCustom, onClick }: Props) => {
     const formattedValue = value !== undefined ? valueFormatter(value) : ''; 
     const [integerPart, decimalPart] = formattedValue.split(',');
+    const isNegative = value !== undefined && value < 0;
 
     return (
         <div className={`${styles.card} ${isCustom ? styles.customCard : ''}`}
@@ -29,11 +30,11 @@ export const ResumeItem = ({ txt, icon, value, isCustom, onClick }: Props) => {
                 </div>
             )}
             {value !== undefined && (
-        <h2 className={styles.cardValue}>
-          {integerPart},
-          <span className={styles.smallDecimal}>{decimalPart}</span>
-        </h2>
-      )}
+                <h2 className={`${styles.cardValue} ${isNegative ? styles.negativeValue : ''}`}>
+                    {integerPart},
+                    <span className={`${styles.smallDecimal} ${isNegative ? styles.negativeValue : ''}`}>{decimalPart}</span>
+                </h2>
+             )}
         </div>
     );
 }
