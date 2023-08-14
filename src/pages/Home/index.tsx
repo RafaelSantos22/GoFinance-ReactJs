@@ -16,7 +16,6 @@ export const Home = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
-  const [total, setTotal] = useState(0);
 
   const addTransaction = (newTransaction: Transaction) => {
     setTransactions(prevTransactions => [...prevTransactions, newTransaction]);
@@ -33,11 +32,8 @@ export const Home = () => {
     const totalExpense = amountExpense.reduce((acc, value) => acc + value, 0);
     const totalIncome = amountIncome.reduce((acc, value) => acc + value, 0);
 
-    const total = Math.abs(Number(totalIncome) - Number(totalExpense));
-
     setIncome(totalIncome);
     setExpense(totalExpense);
-    setTotal(total);
   };
 
   return (
@@ -46,7 +42,7 @@ export const Home = () => {
       <div className={styles.areaTransactions}>
         <ResumeItem txt='Entradas' icon={TrendingUp} value={income} />
         <ResumeItem txt='Saídas' icon={TrendingDown} value={expense} />
-        <ResumeItem txt='Saldo' icon={DolarIcon} value={total} />
+        <ResumeItem txt='Saldo' icon={DolarIcon} value={income - expense} />
         <ResumeItem onClick={() => setIsModalOpen(true)} txt='Transação' icon={PlusIcon} isCustom={true} />
       </div>
       <div className={styles.content}>

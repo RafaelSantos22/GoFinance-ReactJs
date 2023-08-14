@@ -20,7 +20,7 @@
     align-self: stretch;
 }
 
-.valuebox p,
+.valueBox p,
 .card h2,
 .customCard p {
     font-style: normal;
@@ -51,6 +51,10 @@
     cursor: pointer;
 }
 
+.customCard:hover {
+    opacity: .8;
+}
+
 .customCard p {
     color: var(--font-quaternary);
     font-family: Inter;
@@ -65,4 +69,53 @@
     font-size: 19px;
     font-weight: 800;
 }
+
+.negativeValue {
+    color: var(--font-negative) !important;
+}
+
   
+@media (max-width: 480px) {
+    .card {
+        flex-direction: column;
+        width: 80%;
+        gap: 10px;
+    }
+
+    .card h2 {
+        font-size: 21px;
+    }
+
+    .card img {
+        width: 24px;
+    }
+
+    .customCard p {
+        font-size: 16px;        
+    }
+
+    .smallDecimal {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    .card {
+        max-width: 350px;
+    }
+
+    .customCard {
+        flex-direction: column;
+    }
+
+    .customCard p {
+        font-size: 18px;        
+    }
+}
+
+@media (min-width: 959px) and (max-width: 1076px) {
+    .card {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

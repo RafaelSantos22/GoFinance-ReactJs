@@ -36,6 +36,7 @@
     border: 1px solid var(--bg-secondary);
     background: var(--base-white, #FFF);
     outline: 0;
+    font-size: 14px;
 }
 
 .inputField input::placeholder {
@@ -88,4 +89,23 @@
     gap: 16px;
     align-self: stretch;
     padding-top: 20px;
+}
+
+@media (max-width: 480px) {
+    .buttonsArea {
+        flex-direction: column;
+        width: 100%;
+        align-items: unset;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    .formContainer {
+        align-items: center;
+        align-self: unset;
+    }
+
+    .inputField {
+        width: 400px;
+    }
 }

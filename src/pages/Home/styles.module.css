@@ -6,6 +6,7 @@
     align-items: flex-start;
     gap: 32px;
     background-color: var(--bg-secondary);
+    overflow-x: hidden;
 }
 
 .areaTransactions {
@@ -24,3 +25,42 @@
     flex: 1 0 0;
     align-self: stretch;      
 }
+
+@media (max-width: 480px) {
+    .areaTransactions {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .content {
+        padding: 0 10px;
+        background-color: var(--bg-secondary);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    .areaTransactions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+        padding: 0 50px;
+    }
+
+    .content {
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 959px) and (max-width: 1076px) {
+    .areaTransactions {
+        padding: 0 20px;
+    }
+}
+
+
+
+
+
+
+

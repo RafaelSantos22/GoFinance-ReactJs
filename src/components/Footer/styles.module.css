@@ -24,3 +24,22 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+@media (max-width: 480px) {
+    .footer {
+        flex-direction: column;
+        padding: 15px;
+        gap: 5px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    .footer {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .footer p {
+        white-space: nowrap;
+    }
+}

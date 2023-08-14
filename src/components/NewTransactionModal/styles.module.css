@@ -46,3 +46,23 @@
     font-weight: 600;
     line-height: 130%;
 }
+
+@media (max-width: 480px) {
+    .header h2 {
+        font-size: 25px;
+    }
+
+    .modal {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    .modal {
+        padding: 20px;
+        flex-shrink: unset;
+    }
+}
+
+

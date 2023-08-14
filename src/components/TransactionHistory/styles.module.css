@@ -9,6 +9,8 @@
     border-radius: 20px;
     background: var(--bg-tertiary);
     box-shadow: 5px 15px 30px -5px #DCE0EC;
+    max-height: 384px;
+    overflow-y: auto;
 }
 
 .transactions h2 {
@@ -52,3 +54,46 @@ tbody tr {
     width: 40px;
 }
 
+@media (max-width: 480px) {
+    table {
+        overflow-x: auto;
+    }
+
+    .transactions {
+        padding: 20px 5px;     
+        height: 400px; 
+        align-items: unset;
+    }
+
+    tbody tr {
+        font-size: 15px;
+    }
+
+    tbody td {
+        padding: 15px 10px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 958px) {
+    table {
+        overflow-x: auto;
+    }
+
+    .transactions {
+        padding: 20px 5px;     
+        height: 400px; 
+        align-items: center;
+    }
+
+    thead tr {
+        font-size: 16px;
+    }
+
+    tbody tr {
+        font-size: 17px;
+    }
+
+    tbody td {
+        padding: 15px 10px;
+    }
+}

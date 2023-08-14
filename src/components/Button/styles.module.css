@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+.button:hover {
+    opacity: .7;
+}
+
 .specialButton {
     background: var(--bg-quaternary);
     color: var(--font-quaternary);
