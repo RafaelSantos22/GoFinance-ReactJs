@@ -1,11 +1,9 @@
 import styles from './styles.module.css';
 
 type Props = {
-    msg: string;
-}
+  msg: string;
+};
 
 export const ErrorMessage = ({ msg }: Props) => {
-    return (
-        <div className={styles.error}>{msg}</div>
-    );
-}
+  return <div className={styles.error}>{msg}</div>;
+};

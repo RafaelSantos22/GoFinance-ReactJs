@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 import { ResumeItem } from '../../components/ResumeItem';
-import { Header } from "../../components/Header";
+import { Header } from '../../components/Header';
 import TrendingUp from '../../assets/trending-up.svg';
 import TrendingDown from '../../assets/trending-down.svg';
 import DolarIcon from '../../assets/dolar-icon.svg';
@@ -18,8 +18,8 @@ export const Home = () => {
   const [expense, setExpense] = useState(0);
 
   const addTransaction = (newTransaction: Transaction) => {
-    setTransactions(prevTransactions => [...prevTransactions, newTransaction]);
     const updatedTransactions = [...transactions, newTransaction];
+    setTransactions(updatedTransactions);
 
     const amountExpense = updatedTransactions
       .filter(item => item.tipo === '-')
@@ -40,16 +40,25 @@ export const Home = () => {
     <div className={styles.container}>
       <Header />
       <div className={styles.areaTransactions}>
-        <ResumeItem txt='Entradas' icon={TrendingUp} value={income} />
-        <ResumeItem txt='Saídas' icon={TrendingDown} value={expense} />
-        <ResumeItem txt='Saldo' icon={DolarIcon} value={income - expense} />
-        <ResumeItem onClick={() => setIsModalOpen(true)} txt='Transação' icon={PlusIcon} isCustom={true} />
+        <ResumeItem txt="Entradas" icon={TrendingUp} value={income} />
+        <ResumeItem txt="Saídas" icon={TrendingDown} value={expense} />
+        <ResumeItem txt="Saldo" icon={DolarIcon} value={income - expense} />
+        <ResumeItem
+          onClick={() => setIsModalOpen(true)}
+          txt="Transação"
+          icon={PlusIcon}
+          isCustom={true}
+        />
       </div>
       <div className={styles.content}>
-        <TransactionHistory transactions={transactions}/>
+        <TransactionHistory transactions={transactions} />
       </div>
-      <NewTransactionModal addTransaction={addTransaction} isOpen={isModalOpen} closeModal={() => setIsModalOpen(!isModalOpen)} />
+      <NewTransactionModal
+        addTransaction={addTransaction}
+        isOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(!isModalOpen)}
+      />
       <Footer />
     </div>
   );
-}
+};
