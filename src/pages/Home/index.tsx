@@ -21,16 +21,15 @@ export const Home = () => {
     const updatedTransactions = [...transactions, newTransaction];
     setTransactions(updatedTransactions);
 
-    const amountExpense = updatedTransactions
+    const totalExpense = updatedTransactions
       .filter(item => item.tipo === '-')
-      .map(transaction => Number(transaction.valor));
+      .map(transaction => Number(transaction.valor))
+      .reduce((acc, value) => acc + value, 0);
 
-    const amountIncome = updatedTransactions
+    const totalIncome = updatedTransactions
       .filter(item => item.tipo === '+')
-      .map(transaction => Number(transaction.valor));
-
-    const totalExpense = amountExpense.reduce((acc, value) => acc + value, 0);
-    const totalIncome = amountIncome.reduce((acc, value) => acc + value, 0);
+      .map(transaction => Number(transaction.valor))
+      .reduce((acc, value) => acc + value, 0);
 
     setIncome(totalIncome);
     setExpense(totalExpense);

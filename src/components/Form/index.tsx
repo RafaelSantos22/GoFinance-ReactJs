@@ -26,9 +26,7 @@ export const Form = ({ onClose, addTransaction }: Props) => {
 
   const generateID = () => Math.round(Math.random() * 1000);
 
-  const handleAddTransaction = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleAddTransaction = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const isValid = validateInputs(
@@ -57,7 +55,7 @@ export const Form = ({ onClose, addTransaction }: Props) => {
   return (
     <>
       {transactionError && <ErrorMessage msg={errorMessage} />}
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleAddTransaction}>
         <div className={styles.inputField}>
           <label>Nome</label>
           <input
@@ -88,7 +86,7 @@ export const Form = ({ onClose, addTransaction }: Props) => {
         <div className={styles.inputField}>
           <label>Valor</label>
           <input
-            type="text"
+            type="number"
             placeholder="Digite o valor da sua transação"
             value={value}
             onChange={e => setValue(e.target.value)}
@@ -122,10 +120,10 @@ export const Form = ({ onClose, addTransaction }: Props) => {
           </div>
         </div>
         <div className={styles.buttonsArea}>
-          <Button onClick={onClose} icon={CancelIcon}>
+          <Button type="button" onClick={onClose} icon={CancelIcon}>
             Cancelar
           </Button>
-          <Button onClick={handleAddTransaction} icon={CheckButton} isSpecial>
+          <Button type="submit" icon={CheckButton} isSpecial>
             Adicionar
           </Button>
         </div>
